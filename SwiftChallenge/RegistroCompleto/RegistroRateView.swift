@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegistroRateView: View {
     @State private var saludValor: Int? = nil
+    @StateObject private var dataManager = MLDataManager.shared
 
     var body: some View {
         NavigationStack {
@@ -39,6 +40,7 @@ struct RegistroRateView: View {
                             ForEach(1...5, id: \.self) { number in
                                 Button(action: {
                                     saludValor = number
+                                    handleGenHealth(number)
                                 }) {
                                     Text("\(number)")
                                         .font(.title3)
@@ -57,7 +59,7 @@ struct RegistroRateView: View {
                     .padding(.bottom, 90)
 
 
-                    NavigationLink(destination: HomeView()) {
+                    NavigationLink(destination: LoadingClusterView()) {
                         Text("Siguiente")
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity)
@@ -73,6 +75,10 @@ struct RegistroRateView: View {
             }
         }
     }
+    func handleGenHealth(_ valor: Int) {
+        dataManager.updateGenHlth(valor)
+    }
+
 }
 
 #Preview {
