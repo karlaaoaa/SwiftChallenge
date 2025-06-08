@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct RegistroFechaView: View {
+    @StateObject private var dataManager = MLDataManager.shared
     @State private var birthday = Date()
-
+    
     var body: some View {
         NavigationStack {
             
@@ -51,9 +52,33 @@ struct RegistroFechaView: View {
                 .padding(.horizontal, 36)
             }
         }
+        .onAppear {
+            // Cargar fecha existente del dataManager si hay una edad guardada
+            if let existingAge = dataManager.inputData.Age {
+                // Calcular fecha aproximada basada en la edad
+                let calendar = Calendar.current
+                if let approximateDate = calendar.date(byAdding: .year, value: -existingAge, to: Date()) {
+                    birthday = approximateDate
+                }
+            }
+        }
+    }
+    
+    // Función para calcular la edad basada en la fecha de nacimiento
+    private func calculateAge(from birthDate: Date) -> Int {
+        let calendar = Calendar.current
+        let now = Date()
+        let ageComponents = calendar.dateComponents([.year], from: birthDate, to: now)
+        if let age = ageComponents.year {
+            dataManager.updateAge(age)
+            return age
+        } else {
+            // Valor por defecto en caso de error
+            dataManager.updateAge(0)
+            return 0
+        }
     }
 }
-
 #Preview {
     RegistroFechaView()
 }

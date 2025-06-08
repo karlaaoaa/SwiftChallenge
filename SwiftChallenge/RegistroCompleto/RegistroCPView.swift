@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RegistroCPView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject private var dataManager = MLDataManager.shared
     
     @State private var colesterolAlto: Bool? = nil
     @State private var presionAlta: Bool? = nil
@@ -42,9 +43,11 @@ struct RegistroCPView: View {
                         HStack(spacing: 40) {
                             BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: colesterolAlto == true) {
                                 colesterolAlto = true
+                                dataManager.updateHighChol(true)
                             }
                             BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: colesterolAlto == false) {
                                 colesterolAlto = false
+                                dataManager.updateHighChol(false)
                             }
                         }
                     }
@@ -58,9 +61,11 @@ struct RegistroCPView: View {
                         HStack(spacing: 40) {
                             BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: presionAlta == true) {
                                 presionAlta = true
+                                dataManager.updateHighBP(true)
                             }
                             BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: presionAlta == false) {
                                 presionAlta = false
+                                dataManager.updateHighBP(false)
                             }
                         }
                     }
@@ -74,14 +79,16 @@ struct RegistroCPView: View {
                         HStack(spacing: 40) {
                             BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: tieneDiabetes == true) {
                                 tieneDiabetes = true
+                                dataManager.updateDiabetes(true)
                             }
                             BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: tieneDiabetes == false) {
                                 tieneDiabetes = false
+                                dataManager.updateDiabetes(false)
                             }
                         }
                     }
+                    
                     let camposCompletos = colesterolAlto != nil && presionAlta != nil && tieneDiabetes != nil
-
 
                     NavigationLink(destination: RegistroRateView()) {
                         Text("Siguiente")
@@ -97,6 +104,12 @@ struct RegistroCPView: View {
                 }
                 .padding()
             }
+        }
+        .onAppear {
+            // Cargar datos existentes del dataManager si los hay
+            colesterolAlto = dataManager.inputData.HighChol
+            presionAlta = dataManager.inputData.HighBP
+            tieneDiabetes = dataManager.inputData.Diabetes
         }
     }
 }
@@ -124,8 +137,6 @@ struct BooleanOpcionBoton: View {
     }
 }
 
-
 #Preview {
     RegistroCPView()
 }
-

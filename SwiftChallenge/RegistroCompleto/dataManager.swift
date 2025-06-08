@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 
+@MainActor
 class MLDataManager: ObservableObject {
     static let shared = MLDataManager()
     
