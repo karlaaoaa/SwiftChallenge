@@ -5,33 +5,33 @@ struct HomeView: View {
     @State private var userName: String = "María"
     @State private var currentGlucose: Int = 120
     @State private var lastMealTime: String = "hace 2 horas"
-    @State private var userBMI: Double = 27.0 // Ejemplo para Perfil 2
+    let cluster: Int
     
     // Función para determinar el cluster basado en BMI
     private func getUserCluster() -> (emoji: String, name: String, description: String, color: Color) {
-        switch userBMI {
-        case ..<24:
+        switch cluster {
+        case 0:
             return (
                 emoji: "💚",
                 name: "Activo Balanceado",
                 description: "Tienes hábitos saludables muy buenos. Tu objetivo es mantener esta estabilidad.",
                 color: .green
             )
-        case 24..<29:
+        case 3:
             return (
                 emoji: "💛",
                 name: "Bienestar en Progreso",
                 description: "Vas por buen camino. Vamos a mejorar tu energía con mejores elecciones.",
                 color: .yellow
             )
-        case 29..<35:
+        case 4:
             return (
                 emoji: "🧡",
                 name: "Camino Saludable",
                 description: "Pequeños cambios pueden hacer una gran diferencia en tu glucosa.",
                 color: .orange
             )
-        case 35..<45:
+        case 1:
             return (
                 emoji: "💙",
                 name: "Enfoque Vital",
@@ -264,7 +264,7 @@ struct HomeView: View {
 // Vista de preview
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(cluster: 2)
     }
 }
 

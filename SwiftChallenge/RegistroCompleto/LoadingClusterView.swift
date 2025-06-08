@@ -25,7 +25,7 @@ struct LoadingClusterView: View {
             }
             .navigationDestination(isPresented: $navigate) {
                 if let cluster = cluster {
-                    ClusterResultView(cluster: cluster)
+                    HomeView(cluster: cluster)
                 } else {
                     ErrorClusterView()
                 }
