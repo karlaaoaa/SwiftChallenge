@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct RegistroCondicionesView: View {
+struct RegistroCPView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var colesterolAlto: Bool? = nil
@@ -80,8 +80,10 @@ struct RegistroCondicionesView: View {
                             }
                         }
                     }
+                    let camposCompletos = colesterolAlto != nil && presionAlta != nil && tieneDiabetes != nil
 
-                    NavigationLink(destination: RegistroGeneroView()) {
+
+                    NavigationLink(destination: RegistroRateView()) {
                         Text("Siguiente")
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity)
@@ -90,6 +92,8 @@ struct RegistroCondicionesView: View {
                             .cornerRadius(10)
                             .padding(.horizontal, 80)
                     }
+                    .disabled(!camposCompletos)
+                    .opacity(camposCompletos ? 1.0 : 0.5)
                 }
                 .padding()
             }
@@ -122,6 +126,6 @@ struct BooleanOpcionBoton: View {
 
 
 #Preview {
-    RegistroCondicionesView()
+    RegistroCPView()
 }
 

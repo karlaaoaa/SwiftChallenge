@@ -54,7 +54,7 @@ struct RegistroPAView: View {
                     .frame(height: 100)
                     .clipped()
                     
-                    NavigationLink(destination: RegistroPAView()) {
+                    NavigationLink(destination: RegistroCPView()) {
                         Text("Siguiente")
                             .foregroundColor(.black)
                             .fontWeight(.none)
@@ -65,6 +65,7 @@ struct RegistroPAView: View {
                             .padding(.horizontal, 60)
                             .padding(25)
                     }
+                    
                     
                 }
                 .padding(.horizontal, 36)

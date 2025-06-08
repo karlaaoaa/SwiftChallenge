@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegistroGeneroView: View {
-    @State private var genero = ""
+    @State private var genero: Int? = nil
 
     var body: some View {
         NavigationStack {
@@ -31,7 +31,7 @@ struct RegistroGeneroView: View {
                     // Campos
                     HStack(spacing: 60) {
                         Button(action: {
-                            genero = "Masculino"
+                            genero = 1
                         }) {
                             Image(systemName: "figure.stand")
                                 .resizable()
@@ -43,12 +43,12 @@ struct RegistroGeneroView: View {
                                 .clipShape(Circle())
                                 .overlay(
                                     Circle()
-                                        .stroke(genero == "Masculino" ? Color.gray : Color.clear, lineWidth: 3)
+                                        .stroke(genero == 1 ? Color.gray : Color.clear, lineWidth: 3)
                                 )
                         }
 
                         Button(action: {
-                            genero = "Femenino"
+                            genero = 0
                         }) {
                             Image(systemName: "figure.stand.dress")
                                 .resizable()
@@ -60,7 +60,7 @@ struct RegistroGeneroView: View {
                                 .clipShape(Circle())
                                 .overlay(
                                     Circle()
-                                        .stroke(genero == "Femenino" ? Color.gray : Color.clear, lineWidth: 3)
+                                        .stroke(genero == 0 ? Color.gray : Color.clear, lineWidth: 3)
                                 )
                         }
                     }
@@ -76,6 +76,8 @@ struct RegistroGeneroView: View {
                             .padding(.horizontal, 80)
                             .padding(15)
                     }
+                    .disabled(genero == nil)
+                    .opacity(genero == nil ? 0.5 : 1.0)
                     
                 }
                 .padding(.horizontal, 36)

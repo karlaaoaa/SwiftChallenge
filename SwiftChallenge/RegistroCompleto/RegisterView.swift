@@ -11,9 +11,6 @@ struct RegisterView: View {
     @State private var nombre = ""
     @State private var correo = ""
     @State private var password = ""
-    @State private var tipoDiabetes = "Ninguna"
-    @State private var usaInsulina = false
-    @State private var actividad = "Sedentario"
 
     var body: some View {
         NavigationStack {
@@ -61,7 +58,7 @@ struct RegisterView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.black.opacity(1), lineWidth: 1)
                         )
-                    
+                    let camposCompletos = !nombre.isEmpty && !correo.isEmpty && !password.isEmpty
                     
                     NavigationLink(destination: RegistroGeneroView()) {
                         Text("Siguiente")
@@ -74,6 +71,8 @@ struct RegisterView: View {
                             .padding(.horizontal, 80)
                             .padding(15)
                     }
+                    .disabled(!camposCompletos)
+                    .opacity(camposCompletos ? 1.0 : 0.5)
                     
                 }
                 .padding(.horizontal, 36)
