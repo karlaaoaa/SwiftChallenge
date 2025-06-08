@@ -3,7 +3,7 @@ import SwiftUI
 struct HomeView: View {
     // Variables de estado para datos del usuario
     @State private var userName: String = "María"
-    @State private var currentGlucose: Int = 120
+    @State private var currentGlucose: Int = 150
     @State private var lastMealTime: String = "hace 2 horas"
     let cluster: Int
     
@@ -119,8 +119,9 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             // Fondo más suave
-            Color(red: 0.95, green: 0.97, blue: 0.95)
-                .ignoresSafeArea()
+            LinearGradient(gradient: Gradient(colors: [Color(red: 0.804, green: 0.878, blue: 0.788).opacity(20), Color.white]),
+                           startPoint: .top, endPoint: .center)
+            .ignoresSafeArea()
             
             ScrollView {
                 VStack(spacing: 30) {
