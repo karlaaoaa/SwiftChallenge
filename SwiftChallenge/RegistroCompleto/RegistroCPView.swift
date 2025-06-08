@@ -11,8 +11,9 @@ import SwiftUI
 struct RegistroCondicionesView: View {
     @Environment(\.dismiss) var dismiss
     
-    @State private var colesterolAlto: String = ""
-    @State private var presionAlta: String = ""
+    @State private var colesterolAlto: Bool? = nil
+    @State private var presionAlta: Bool? = nil
+    @State private var tieneDiabetes: Bool? = nil
     
     var body: some View {
         NavigationStack {
@@ -25,7 +26,6 @@ struct RegistroCondicionesView: View {
                 .ignoresSafeArea()
                 
                 VStack(spacing: 40) {
-                    
                     
                     Text("Condiciones de salud")
                         .font(.largeTitle)
@@ -40,11 +40,11 @@ struct RegistroCondicionesView: View {
                             .fontWeight(.semibold)
 
                         HStack(spacing: 40) {
-                            OpcionBoton(titulo: "Sí", seleccionado: colesterolAlto == "Sí") {
-                                colesterolAlto = "Sí"
+                            BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: colesterolAlto == true) {
+                                colesterolAlto = true
                             }
-                            OpcionBoton(titulo: "No", seleccionado: colesterolAlto == "No") {
-                                colesterolAlto = "No"
+                            BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: colesterolAlto == false) {
+                                colesterolAlto = false
                             }
                         }
                     }
@@ -56,11 +56,27 @@ struct RegistroCondicionesView: View {
                             .fontWeight(.semibold)
 
                         HStack(spacing: 40) {
-                            OpcionBoton(titulo: "Sí", seleccionado: presionAlta == "Sí") {
-                                presionAlta = "Sí"
+                            BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: presionAlta == true) {
+                                presionAlta = true
                             }
-                            OpcionBoton(titulo: "No", seleccionado: presionAlta == "No") {
-                                presionAlta = "No"
+                            BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: presionAlta == false) {
+                                presionAlta = false
+                            }
+                        }
+                    }
+                    
+                    // Pregunta 3
+                    VStack(spacing: 12) {
+                        Text("¿Tienes algún tipo de diabetes?")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+
+                        HStack(spacing: 40) {
+                            BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: presionAlta == true) {
+                                presionAlta = true
+                            }
+                            BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: presionAlta == false) {
+                                presionAlta = false
                             }
                         }
                     }
@@ -81,12 +97,12 @@ struct RegistroCondicionesView: View {
     }
 }
 
-// Reutilizable para botones de opción
-struct OpcionBoton: View {
+struct BooleanOpcionBoton: View {
     let titulo: String
+    let valor: Bool
     let seleccionado: Bool
     let accion: () -> Void
-    
+
     var body: some View {
         Button(action: accion) {
             Text(titulo)
@@ -103,6 +119,7 @@ struct OpcionBoton: View {
         }
     }
 }
+
 
 #Preview {
     RegistroCondicionesView()
