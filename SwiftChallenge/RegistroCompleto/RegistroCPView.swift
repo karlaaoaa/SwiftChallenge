@@ -72,11 +72,11 @@ struct RegistroCondicionesView: View {
                             .fontWeight(.semibold)
 
                         HStack(spacing: 40) {
-                            BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: presionAlta == true) {
-                                presionAlta = true
+                            BooleanOpcionBoton(titulo: "Sí", valor: true, seleccionado: tieneDiabetes == true) {
+                                tieneDiabetes = true
                             }
-                            BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: presionAlta == false) {
-                                presionAlta = false
+                            BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: tieneDiabetes == false) {
+                                tieneDiabetes = false
                             }
                         }
                     }
