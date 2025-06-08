@@ -53,6 +53,7 @@ struct RegistroRateView: View {
                                                 .stroke(saludValor == number ? Color.green : Color.clear, lineWidth: 2)
                                         )
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
@@ -68,8 +69,10 @@ struct RegistroRateView: View {
                             .cornerRadius(10)
                             .padding(.horizontal, 80)
                     }
+                    .buttonStyle(.plain)
                     .disabled(saludValor == nil)
                     .opacity(saludValor == nil ? 0.5 : 1.0)
+                    
                 }
                 .padding()
             }
@@ -77,6 +80,7 @@ struct RegistroRateView: View {
     }
     func handleGenHealth(_ valor: Int) {
         dataManager.updateGenHlth(valor)
+        print("Gen Health updated t:", valor)
     }
 
 }

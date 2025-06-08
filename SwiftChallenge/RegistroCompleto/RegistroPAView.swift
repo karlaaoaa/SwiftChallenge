@@ -56,7 +56,9 @@ struct RegistroPAView: View {
                                 .padding(.horizontal, 60)
                                 .padding(25)
                         }
+                        
                     )
+                    .buttonStyle(.plain) // Fucking heellslslslsllsls
                     .simultaneousGesture(TapGesture().onEnded {
                         calculateBMI(peso: Double(peso), estaturaCM: Double(estatura))
                     })
@@ -71,6 +73,7 @@ struct RegistroPAView: View {
         let estaturaM = estaturaCM / 100
         let BMI = Int(peso / (estaturaM * estaturaM))
         dataManager.updateBMI(BMI)
+        print("Valor de BMI actualizado a:", BMI)
     }
 }
 

@@ -45,10 +45,12 @@ struct RegistroCPView: View {
                                 colesterolAlto = true
                                 dataManager.updateHighChol(true)
                             }
+                            .buttonStyle(.plain)
                             BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: colesterolAlto == false) {
                                 colesterolAlto = false
                                 dataManager.updateHighChol(false)
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                     
@@ -63,10 +65,12 @@ struct RegistroCPView: View {
                                 presionAlta = true
                                 dataManager.updateHighBP(true)
                             }
+                            .buttonStyle(.plain)
                             BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: presionAlta == false) {
                                 presionAlta = false
                                 dataManager.updateHighBP(false)
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                     
@@ -81,10 +85,13 @@ struct RegistroCPView: View {
                                 tieneDiabetes = true
                                 dataManager.updateDiabetes(true)
                             }
+                            .buttonStyle(.plain)
                             BooleanOpcionBoton(titulo: "No", valor: false, seleccionado: tieneDiabetes == false) {
                                 tieneDiabetes = false
                                 dataManager.updateDiabetes(false)
+                                
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                     
@@ -99,6 +106,7 @@ struct RegistroCPView: View {
                             .cornerRadius(10)
                             .padding(.horizontal, 80)
                     }
+                    .buttonStyle(.plain)
                     .disabled(!camposCompletos)
                     .opacity(camposCompletos ? 1.0 : 0.5)
                 }

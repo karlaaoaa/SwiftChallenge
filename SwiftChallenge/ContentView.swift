@@ -69,9 +69,10 @@ struct ContentView: View {
                         }) {
                             Image(systemName: self.isSecure ? "eye.slash" : "eye")
                                 .foregroundColor(.black)
-                                .padding(.trailing, 16)
+                               .padding(.trailing, 16)
                         }
                     }
+                    .buttonStyle(.plain)
                     
                     // Botón de login
                     Button(action: {
@@ -87,6 +88,7 @@ struct ContentView: View {
                             .padding(.horizontal, 80)
                             .padding(15)
                     }
+                    .buttonStyle(.plain)
                     
                     // Opción de registro
                     HStack {
@@ -99,7 +101,8 @@ struct ContentView: View {
                                 .fontWeight(.semibold)
                         }
                         
-                    }
+                    }.buttonStyle(.plain)
+                    
                 }
                 .padding(.horizontal, 36)
             }

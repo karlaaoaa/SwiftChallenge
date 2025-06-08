@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegistroGeneroView: View {
     @State private var genero: Int? = nil
+    @StateObject private var dataManager = MLDataManager.shared
 
     var body: some View {
         NavigationStack {
@@ -32,6 +33,7 @@ struct RegistroGeneroView: View {
                     HStack(spacing: 60) {
                         Button(action: {
                             genero = 1
+                            handleSex(1)
                         }) {
                             Image(systemName: "figure.stand")
                                 .resizable()
@@ -46,9 +48,11 @@ struct RegistroGeneroView: View {
                                         .stroke(genero == 1 ? Color.gray : Color.clear, lineWidth: 3)
                                 )
                         }
+                        .buttonStyle(.plain)
 
                         Button(action: {
                             genero = 0
+                            handleSex(0)
                         }) {
                             Image(systemName: "figure.stand.dress")
                                 .resizable()
@@ -63,6 +67,7 @@ struct RegistroGeneroView: View {
                                         .stroke(genero == 0 ? Color.gray : Color.clear, lineWidth: 3)
                                 )
                         }
+                        .buttonStyle(.plain)
                     }
                     
                     NavigationLink(destination: RegistroFechaView()) {
@@ -78,13 +83,19 @@ struct RegistroGeneroView: View {
                     }
                     .disabled(genero == nil)
                     .opacity(genero == nil ? 0.5 : 1.0)
+                    .buttonStyle(.plain)
                     
                 }
                 .padding(.horizontal, 36)
             }
         }
     }
+    func handleSex(_ valor: Int) {
+        dataManager.updateSex(valor)
+        print("Valor de sexo: ", valor)
+    }
 }
+
 
 #Preview {
     RegistroGeneroView()

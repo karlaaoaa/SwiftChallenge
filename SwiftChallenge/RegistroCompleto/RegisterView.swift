@@ -73,6 +73,7 @@ struct RegisterView: View {
                     }
                     .disabled(!camposCompletos)
                     .opacity(camposCompletos ? 1.0 : 0.5)
+                    .buttonStyle(.plain)
                     
                 }
                 .padding(.horizontal, 36)
